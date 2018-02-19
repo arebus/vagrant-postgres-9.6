@@ -23,8 +23,8 @@ Vagrant.configure("2") do |config|
 		config.vm.define "node#{i}" do |subconfig|
 			subconfig.vm.box = BOX
 			subconfig.vm.hostname = "node#{i}"
+			subconfig.vm.network "private_network", ip: "10.10.0.#{i+10}", virtualbox__intnet: true
 			subconfig.vm.provision "shell", inline: $common_pg_init
 		end
 	end 	
-#	config.vm.provision "shell", inline: $common_pg_init
 end
